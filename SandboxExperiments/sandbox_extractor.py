@@ -1,4 +1,4 @@
-from isaaclab.apps import AppLauncher
+from isaaclab.app import AppLauncher
 import argparse
 
 parser = argparse.ArgumentParser(description="This script launches the app to read data for WarpEventCamera in IsaacLab")
