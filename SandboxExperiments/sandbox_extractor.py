@@ -91,6 +91,9 @@ class CubeSceneCfg(InteractiveSceneCfg):
         prim_path="/World/envs/env_.*/cube",
         spawn=sim_utils.CuboidCfg(
             size=(0.5, 0.5, 0.5),
+            rigid_props=sim_utils.RigidBodyPropertiesCfg()
+            mass_props=sim_utils.MassPropertiesCfg(mass=1.0),
+            collision_props=sim_utils.CollisionPropertiesCfg()
             visual_material=sim_utils.PreviewSurfaceCfg(diffuse_color=(0.8, 0.1, 0.1), roughness=0.2, metallic=0.5)
         ),
         init_state=RigidObjectCfg.InitialStateCfg(pos=(0.0, 0.0, 10.0), rot=(1.0, 0.0, 0.0, 0.0))
