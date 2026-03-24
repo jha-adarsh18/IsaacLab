@@ -167,7 +167,7 @@ class EventCamera(SensorBase):
             width=self.cfg.width,
             height=self.cfg.height,
             offset=self.cfg.offset,
-            update_period=self.cfg.update_period,
+            update_period=0.0, # hard coded to ensure there is a sync between the inner camera and the event camera.
             update_latest_camera_pose=self.cfg.update_latest_camera_pose,
             spawn=None,
             data_types=["rgb", "motion_vectors"],
@@ -181,6 +181,7 @@ class EventCamera(SensorBase):
 
         # create internal buffers
         self._create_buffers()
+        logger.info(f"Initialized EventCamera with {self.num_instances} sensors.")
 
     def _update_buffers_impl(self, env_ids: Sequence[int]):
         """Updates the internal buffers for the event camera given the current RGB frames and motion vectors from the camera sensor."""
