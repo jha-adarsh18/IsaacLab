@@ -43,33 +43,12 @@ class EventCameraData:
     Shape is (N, 3, 3) where N is the number of sensors.
     """
 
-    event_frame: torch.Tensor = None
-    """The retrieved event data with shape (N, H, W, 2) where
-    N is the number of sensors, H and W are the height and width of the camera sensor, 
-    and the last dimension corresponds to the number of positive and negative events, respectively. 
-
-    Accumulated over one simulation step, which can be interpreted as a discrete time bin for event generation.
-
-    (dtype is int32, as the number of events are discrete counts)
+    output: dict[str, torch.Tensor] = None
     """
-
-    raw_events: torch.Tensor = None
-    """The retrieved raw event data with shape (N, E, 4) where N is the number of sensors, E is the maximum number of events that can be stored,
-    and the last dimension corresponds to a tuple of (x, y, polarity, timestamp) for each event.
+    The retrieved event data with:
     
-    (dtype is int32 for x, y, and polarity, and float32 for timestamp)
+    - ``"event_frame"``: A tensor of shape (N, H, W, 2) where N is the number of sensors, H and W are the height and width of the camera sensor,
+    and the last dimension corresponds to the number of positive and negative events, respectively.
     
-    Note: This is reserved for future implementation of true asynchronus event generation.
-    Currently, only the accumulated event frame (for the duration of the simulation time step) is implemented and returned in `event_frame`.
+    Note: ``"raw_events"`` is a feature to be implemented in the future, and is not currently available.
     """
-    
-    log_intensity: torch.Tensor = None
-    """The retrieved log intensity data with shape (N, H, W) where N is the number of sensors, H and W are the height and width of the camera sensor.
-    
-    (dtype is float32, representing the log intensity of the image)"""
-
-    motion_vectors: torch.Tensor = None
-    """The retrieved motion vector data with shape (N, H, W, 2) where N is the number of sensors, H and W are the height and width of the camera sensor,
-    and the last dimension corresponds to the motion vector in x and y directions, respectively.
-    
-    (dtype is float32, representing the motion vectors of the image)"""
